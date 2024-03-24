@@ -1,3 +1,4 @@
+pip install -r requirements.txt
 import streamlit as st
 import pickle
 from sklearn.datasets import load_iris
