@@ -1,17 +1,10 @@
 import streamlit as st
 import pickle
-#from sklearn.datasets import load_iris
-import pandas as pd
+from sklearn.datasets import load_iris
 
-# Đường link đến dữ liệu trên GitHub
-url = "https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv"
-# Đọc dữ liệu vào DataFrame
-iris = pd.read_csv(url)
+iris = load_iris()
 
-#iris = load_iris()
-#####
 # Load the trained model
-
 clf = pickle.load(open('iris_model.pkl', 'rb'))
 
 # Sidebar for user input
@@ -23,6 +16,7 @@ petal_width = st.sidebar.slider('Petal Width', 0.1, 2.5, 1.0)
 
 # Make predictions
 prediction = clf.predict([[sepal_length, sepal_width, petal_length, petal_width]])
+
 # Display prediction
-st.write('## Prediction:') 
+st.write('## Prediction:')
 st.write(iris.target_names[prediction[0]])
